@@ -1,0 +1,23 @@
+{
+  "name": "cypress-cucumber-framework",
+  "version": "1.0.0",
+  "description": "Cypress Cucumber Framework with Extent Reports",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:run-chrome": "cypress run --browser chrome",
+    "test": "npm run cypress:run-chrome",
+    "report:generate": "node generate-report.js",
+    "clean:reports": "rm -rf reports/* || true"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.0",
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "multiple-cucumber-html-reporter": "^3.4.0",
+    "cucumber-html-reporter": "^5.5.0"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  }
+}
