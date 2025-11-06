@@ -1,6 +1,6 @@
-const multipleCucumberHtmlReporter = require('multiple-cucumber-html-reporter');
+import { generate } from 'multiple-cucumber-html-reporter';
 
-multipleCucumberHtmlReporter.generate({
+generate({
   jsonDir: 'reports/json',
   reportPath: 'reports/html',
   openReportInBrowser: true,

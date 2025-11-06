@@ -1,0 +1,12 @@
+{
+  "default": {
+    "formatOptions": {
+      "snippetInterface": "async-await"
+    },
+    "publishQuiet": true,
+    "requireModule": ["ts-node/register"],
+    "require": [
+      "cypress/e2e/step_definitions/**/*.js"
+    ]
+  }
+}
