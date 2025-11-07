@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools {
-        nodejs 'null'
+        nodejs 'nodejs'
     }
     
     environment {
@@ -26,7 +26,7 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'npm ci'
+                sh 'npm i'
             }
         }
         
