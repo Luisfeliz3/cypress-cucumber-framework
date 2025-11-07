@@ -22,4 +22,5 @@ Then('I should be redirected to the dashboard', () => {
 
 Then('I should see an error message', () => {
   cy.get('.error-message').should('be.visible');
+  
 });
