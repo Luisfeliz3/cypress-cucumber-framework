@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools {
-        nodejs 'nodejs'
+        nodejs 'node js'
     }
     
     environment {
@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Clean Workspace') {
             steps {
-                
+
                 cleanWs()
             }
         }
