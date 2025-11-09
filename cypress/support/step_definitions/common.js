@@ -1,4 +1,4 @@
-import { Given, When, Then, Before, After } from '@badeball/cypress-cucumber-preprocessor';
+const { Given, When, Then, Before, After } = require('@badeball/cypress-cucumber-preprocessor');
 
 // Before each scenario
 Before(() => {
@@ -10,7 +10,7 @@ After(() => {
   cy.log('Scenario completed');
 });
 
-Given('I am on the login page', () => {
+Given('I am on the logins page', () => {
   cy.visit('www.nasdaq.com');
 });
 

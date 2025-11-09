@@ -1,19 +1,28 @@
-import { generate } from 'multiple-cucumber-html-reporter';
+const reporter = require('cucumber-html-reporter');
+const fs = require('fs-extra');
+const path = require('path');
 
-generate({
-  jsonDir: 'reports/json',
-  reportPath: 'reports/html',
-  openReportInBrowser: true,
-  disableLog: true,
-  displayDuration: true,
-  durationInMS: true,
-  customData: {
-    title: 'Run info',
-    data: [
-      { label: 'Project', value: 'Cypress Cucumber Framework' },
-      { label: 'Release', value: '1.0.0' },
-      { label: 'Execution Start Time', value: new Date().toLocaleString() },
-      { label: 'Execution End Time', value: new Date().toLocaleString() }
-    ]
+const options = {
+  theme: 'bootstrap',
+  jsonFile: 'reports/cucumber_report.json',
+  output: 'reports/cucumber_report.html',
+  reportSuiteAsScenarios: true,
+  scenarioTimestamp: true,
+  launchReport: true,
+  metadata: {
+    "App Version": "1.0.0",
+    "Test Environment": "STAGING",
+    "Browser": "Chrome",
+    "Platform": "Windows 10",
+    "Parallel": "Scenarios",
+    "Executed": "Remote"
   }
-});
+};
+
+// Ensure reports directory exists
+fs.ensureDirSync('reports');
+
+// Generate HTML report
+reporter.generate(options);
+
+console.log('Extent HTML Report generated successfully!');

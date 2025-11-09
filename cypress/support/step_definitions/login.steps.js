@@ -1,10 +1,8 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 
-
-
-// Given('I am on the login page', () => {
-//   cy.visit('/login');
-// });
+Given('I am on the login page', () => {
+  cy.visit('https://www.aol.com');
+});
 
 When('I enter username {string} and password {string}', (username, password) => {
   cy.get('#username').type(username);
@@ -22,5 +20,4 @@ Then('I should be redirected to the dashboard', () => {
 
 Then('I should see an error message', () => {
   cy.get('.error-message').should('be.visible');
-  
 });

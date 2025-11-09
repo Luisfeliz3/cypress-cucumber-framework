@@ -2,8 +2,7 @@ const { defineConfig } = require('cypress');
 const createBundler = require('@bahmutov/cypress-esbuild-preprocessor');
 const addCucumberPreprocessorPlugin = require('@badeball/cypress-cucumber-preprocessor').addCucumberPreprocessorPlugin;
 const createEsbuildPlugin = require('@badeball/cypress-cucumber-preprocessor/esbuild').createEsbuildPlugin;
-const fs = require('fs-extra');
-
+const fs = require('fs'); 
 module.exports = defineConfig({
   e2e: {
     async setupNodeEvents(on, config) {
@@ -17,7 +16,7 @@ module.exports = defineConfig({
       // Generate cucumber JSON reports
       on('after:run', async (results) => {
         if (results) {
-          await fs.mkdir('reports', { recursive: true });
+          fs.mkdirSync('reports/', { recursive: true });
         }
       });
 
