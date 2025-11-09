@@ -1,0 +1,86 @@
+pipeline {
+    agent any
+    
+    tools {
+        nodejs 'nodejs'
+    }
+    
+    environment {
+        CYPRESS_CACHE_FOLDER = '/tmp/cypress_cache'
+    }
+    
+    stages {
+        stage('Clean Workspace') {
+            steps {
+
+                cleanWs()
+            }
+        }
+        
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Luisfeliz3/cypress-cucumber-framework.git'
+            }
+        }
+        
+        stage('Install Dependencies') {
+             steps {
+                sh 'npm install'
+                sh 'npm run test'
+            }
+        }
+        
+        stage('Run Tests') {
+            steps {
+                script {
+                    try {
+                        sh 'npm run cypress:run-chrome'
+                    } catch (error) {
+                        echo "Tests failed but continuing for reporting"
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
+            }
+            post {
+                always {
+                    // Generate reports
+                    sh 'node generate-report.js'
+                    
+                    // Archive test results
+                    archiveArtifacts artifacts: 'reports/**/*', fingerprint: true
+                    
+                    // Publish HTML reports
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'reports',
+                        reportFiles: 'cucumber_report.html',
+                        reportName: 'Cucumber HTML Report'
+                    ])
+                    
+                    // Publish JUnit reports if available
+                    junit 'reports/junit/*.xml'
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Clean up
+            sh 'rm -rf node_modules cypress/screenshots cypress/videos'
+            
+            // Send notifications
+            emailext (
+                subject: "Build ${currentBuild.result}: Job ${env.JOB_NAME}",
+                body: """
+                Build: ${env.BUILD_URL}
+                Result: ${currentBuild.result}
+                """,
+                to: 'team@example.com'
+            )
+        }
+    }
+}

@@ -1,0 +1,172 @@
+{
+  "pages": {
+    "login": {
+      "selectors": {
+        "username": "#username",
+        "password": "#password",
+        "loginButton": "#login-btn",
+        "rememberMe": "#remember-me",
+        "forgotPassword": ".forgot-password",
+        "errorMessage": ".error-message",
+        "successMessage": ".success-message",
+        "validationError": ".validation-error"
+      },
+      "urls": {
+        "main": "/login",
+        "forgotPassword": "/forgot-password",
+        "register": "/register"
+      }
+    },
+    "dashboard": {
+      "selectors": {
+        "header": ".dashboard-header",
+        "welcomeMessage": ".welcome-message",
+        "userProfile": ".user-profile",
+        "logoutButton": "#logout-btn",
+        "searchInput": ".search-input",
+        "searchButton": ".search-btn"
+      },
+      "widgets": {
+        "stats": {
+          "totalUsers": ".stats-widget .total-users",
+          "revenue": ".stats-widget .revenue",
+          "growth": ".stats-widget .growth"
+        },
+        "recentActivity": {
+          "container": ".recent-activity",
+          "activityList": ".activity-list",
+          "activityItem": ".activity-item"
+        },
+        "notifications": {
+          "bellIcon": ".notifications-bell",
+          "dropdown": ".notifications-dropdown",
+          "notificationItem": ".notification-item",
+          "markAsRead": ".mark-as-read"
+        }
+      },
+      "navigation": {
+        "sidebar": {
+          "menu": ".sidebar-menu",
+          "menuItem": ".menu-item",
+          "subMenu": ".sub-menu",
+          "collapsed": ".sidebar-collapsed"
+        },
+        "topNav": {
+          "container": ".top-navigation",
+          "logo": ".nav-logo",
+          "userMenu": ".user-menu",
+          "settings": ".settings-menu"
+        }
+      }
+    },
+    "userManagement": {
+      "selectors": {
+        "pageTitle": ".page-title",
+        "addUserButton": "#add-user-btn",
+        "userTable": ".user-table",
+        "tableHeaders": {
+          "name": ".table-header-name",
+          "email": ".table-header-email",
+          "role": ".table-header-role",
+          "actions": ".table-header-actions"
+        },
+        "tableRows": {
+          "container": ".table-rows",
+          "row": ".user-row",
+          "editButton": ".edit-user-btn",
+          "deleteButton": ".delete-user-btn"
+        },
+        "search": {
+          "input": ".user-search-input",
+          "button": ".user-search-btn"
+        },
+        "pagination": {
+          "container": ".pagination",
+          "nextButton": ".pagination-next",
+          "prevButton": ".pagination-prev",
+          "pageNumber": ".page-number"
+        }
+      }
+    },
+    "common": {
+      "selectors": {
+        "loadingSpinner": ".loading-spinner",
+        "modal": {
+          "overlay": ".modal-overlay",
+          "container": ".modal-container",
+          "title": ".modal-title",
+          "closeButton": ".modal-close",
+          "confirmButton": ".modal-confirm",
+          "cancelButton": ".modal-cancel"
+        },
+        "toast": {
+          "container": ".toast-container",
+          "success": ".toast-success",
+          "error": ".toast-error",
+          "warning": ".toast-warning",
+          "close": ".toast-close"
+        },
+        "form": {
+          "submitButton": "button[type='submit']",
+          "cancelButton": "button[type='button']",
+          "resetButton": "button[type='reset']",
+          "requiredField": ".required-field",
+          "fieldError": ".field-error"
+        }
+      }
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": ".btn-primary",
+      "secondary": ".btn-secondary",
+      "danger": ".btn-danger",
+      "success": ".btn-success",
+      "warning": ".btn-warning",
+      "info": ".btn-info",
+      "small": ".btn-sm",
+      "large": ".btn-lg",
+      "disabled": ".btn:disabled"
+    },
+    "forms": {
+      "input": {
+        "text": "input[type='text']",
+        "email": "input[type='email']",
+        "password": "input[type='password']",
+        "number": "input[type='number']",
+        "date": "input[type='date']",
+        "file": "input[type='file']"
+      },
+      "select": {
+        "dropdown": "select",
+        "option": "option",
+        "multiSelect": ".multi-select"
+      },
+      "checkbox": {
+        "container": ".checkbox-container",
+        "input": "input[type='checkbox']",
+        "label": ".checkbox-label"
+      },
+      "radio": {
+        "container": ".radio-container",
+        "input": "input[type='radio']",
+        "label": ".radio-label"
+      },
+      "textarea": "textarea"
+    },
+    "tables": {
+      "container": ".table-container",
+      "header": ".table-header",
+      "row": ".table-row",
+      "cell": ".table-cell",
+      "sortable": ".sortable",
+      "filter": ".table-filter"
+    },
+    "navigation": {
+      "breadcrumb": ".breadcrumb",
+      "pagination": ".pagination",
+      "tabs": ".tabs-container",
+      "tab": ".tab-item"
+    }
+  }
+}
