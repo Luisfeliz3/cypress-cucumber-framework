@@ -1,18 +1,18 @@
-const elementManager = require('../config/element-manager');
+import { getPageElements, getElement as _getElement, getPageUrl } from '../utilities/element-manager.js';
 
 class BasePage {
   constructor(pageName) {
     this.pageName = pageName;
-    this.elements = elementManager.getPageElements(pageName);
+    this.elements = getPageElements(pageName);
   }
 
   // Common methods available to all pages
   getElement(path) {
-    return elementManager.getElement(`${this.pageName}.${path}`);
+    return _getElement(`${this.pageName}.${path}`);
   }
 
   navigateTo(urlType = 'main') {
-    const url = elementManager.getPageUrl(this.pageName, urlType);
+    const url = getPageUrl(this.pageName, urlType);
     cy.visit(url);
   }
 
@@ -46,4 +46,4 @@ class BasePage {
   }
 }
 
-module.exports = BasePage;
+export default BasePage;

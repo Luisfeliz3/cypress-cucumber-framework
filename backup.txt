@@ -1,0 +1,45 @@
+{
+  "name": "cypress-cucumber-framework",
+  "version": "1.0.0",
+  "description": "Cypress Cucumber Framework with Extent Reports",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:run-chrome": "cypress run --browser chrome",
+    "test": "npm run cypress:run-chrome",
+    "testExt": "cypress run --env TAGS=\"@yourTag\" --reporter cypress-cucumber-preprocessor/json-formatter --reporter-options output=reports/cucumber_report.json",
+    "report:generate": "node generate-report.js",
+    "clean:reports": "rm -rf reports/* || true",
+    "report": "cucumber-js --format json:reports/cucumber_report.json --format @cucumber/pretty-formatter --format html:reports/cucumber_report.html",  
+    "cypress:open:dev": "NODE_ENV=development cypress open",
+    "cypress:open:staging": "NODE_ENV=staging cypress open",
+    "cypress:open:prod": "NODE_ENV=production cypress open",
+    "cypress:run:dev": "NODE_ENV=development cypress run",
+    "cypress:run:staging": "NODE_ENV=staging cypress run",
+    "cypress:run:prod": "NODE_ENV=production cypress run",
+    "cypress:run:chrome": "CYPRESS_BROWSER=chrome cypress run",
+    "cypress:run:firefox": "CYPRESS_BROWSER=firefox cypress run",
+    "cypress:run:edge": "CYPRESS_BROWSER=edge cypress run",
+    "test:dev": "NODE_ENV=development CYPRESS_BROWSER=chrome npm run cypress:run",
+    "test:staging": "NODE_ENV=staging CYPRESS_BROWSER=chrome npm run cypress:run",
+    "test:prod": "NODE_ENV=production CYPRESS_BROWSER=firefox npm run cypress:run",
+    "config:show": "node -e \"require('./config/config-manager').printConfigSummary()\"",
+    "config:list": "node -e \"console.log(JSON.stringify(require('./config/config-manager').getConfig(), null, 2))\"",
+    "test:elements": "node -e \"require('./config/element-manager').printElements()\"",
+    "test:elements:login": "node -e \"require('./config/element-manager').printElements('login')\"",
+    "test:elements:dashboard": "node -e \"require('./config/element-manager').printElements('dashboard')\""
+
+  
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "cucumber-html-reporter": "^7.2.0",
+    "cypress": "^13.6.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "multiple-cucumber-html-reporter": "^3.4.0"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  }
+}

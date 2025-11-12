@@ -1,24 +1,39 @@
 const { defineConfig } = require('cypress');
-const createBundler = require('@bahmutov/cypress-esbuild-preprocessor');
-const addCucumberPreprocessorPlugin = require('@badeball/cypress-cucumber-preprocessor').addCucumberPreprocessorPlugin;
-const createEsbuildPlugin = require('@badeball/cypress-cucumber-preprocessor/esbuild').createEsbuildPlugin;
-const fs = require('fs'); 
+const webpackPreprocessor = require('@cypress/webpack-preprocessor');
+
 module.exports = defineConfig({
   e2e: {
     async setupNodeEvents(on, config) {
-      const bundler = createBundler({
-        plugins: [createEsbuildPlugin(config)],
-      });
-
-      on('file:preprocessor', bundler);
-      await addCucumberPreprocessorPlugin(on, config);
-
-      // Generate cucumber JSON reports
-      on('after:run', async (results) => {
-        if (results) {
-          fs.mkdirSync('reports/', { recursive: true });
+      const webpackOptions = {
+        resolve: {
+          extensions: ['.ts', '.js']
+        },
+        module: {
+          rules: [
+            {
+              test: /\.feature$/,
+              use: [
+                {
+                  loader: '@badeball/cypress-cucumber-preprocessor/webpack',
+                  options: config,
+                },
+              ],
+            },
+          ],
+        },
+        // Handle Node.js built-in modules
+        node: {
+          __dirname: true,
+          __filename: true,
+          global: true,
         }
-      });
+      };
+
+      on('file:preprocessor', webpackPreprocessor({ webpackOptions }));
+
+      // Import and use the cucumber preprocessor
+      const cucumberPreprocessor = require('@badeball/cypress-cucumber-preprocessor');
+      await cucumberPreprocessor.addCucumberPreprocessorPlugin(on, config);
 
       return config;
     },

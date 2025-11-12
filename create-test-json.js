@@ -1,6 +1,6 @@
 // create-test-json.js
-const fs = require('fs');
-const path = require('path');
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
 const testJson = [
   {
@@ -32,13 +32,13 @@ const testJson = [
   }
 ];
 
-const reportsDir = path.join(__dirname, 'reports');
-if (!fs.existsSync(reportsDir)) {
-  fs.mkdirSync(reportsDir, { recursive: true });
+const reportsDir = join(__dirname, 'reports');
+if (!existsSync(reportsDir)) {
+  mkdirSync(reportsDir, { recursive: true });
 }
 
-fs.writeFileSync(
-  path.join(reportsDir, 'cucumber_report.json'),
+writeFileSync(
+  join(reportsDir, 'cucumber_report.json'),
   JSON.stringify(testJson, null, 2)
 );
 

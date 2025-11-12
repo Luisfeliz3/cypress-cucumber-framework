@@ -1,6 +1,6 @@
-const reporter = require('cucumber-html-reporter');
-const fs = require('fs-extra');
-const path = require('path');
+import { generate } from 'cucumber-html-reporter';
+import { ensureDirSync } from 'fs-extra';
+import path from 'path';
 
 const options = {
   theme: 'bootstrap',
@@ -13,16 +13,16 @@ const options = {
     "App Version": "1.0.0",
     "Test Environment": "STAGING",
     "Browser": "Chrome",
-    "Platform": "Windows 10",
+    "Platform": "Mac iOS",
     "Parallel": "Scenarios",
     "Executed": "Remote"
   }
 };
 
 // Ensure reports directory exists
-fs.ensureDirSync('reports');
+ensureDirSync('reports');
 
 // Generate HTML report
-reporter.generate(options);
+generate(options);
 
 console.log('Extent HTML Report generated successfully!');

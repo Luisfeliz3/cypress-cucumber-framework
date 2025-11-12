@@ -1,4 +1,4 @@
-const BasePage = require('./BasePage');
+import BasePage from './BasePage';
 
 class LoginPage extends BasePage {
   constructor() {
@@ -54,4 +54,4 @@ class LoginPage extends BasePage {
   }
 }
 
-module.exports = LoginPage;
+export default LoginPage;

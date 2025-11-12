@@ -1,0 +1,36 @@
+const { Given, When, Then } = require('@badeball/cypress-cucumber-preprocessor');
+const LoginPage = require('../../../pages/LoginPage');
+const DashboardPage = require('../../../pages/DashboardPage');
+
+const loginPage = new LoginPage();
+const dashboardPage = new DashboardPage();
+
+Given('I am on the login page', () => {
+  loginPage.navigateTo();
+});
+
+When('I enter username {string} and password {string}', (username, password) => {
+  loginPage.enterUsername(username).enterPassword(password);
+});
+
+When('I click the login button', () => {
+  loginPage.clickLogin();
+});
+
+When('I login with username {string} and password {string}', (username, password) => {
+  loginPage.login(username, password);
+});
+
+Then('I should be redirected to the dashboard', () => {
+  dashboardPage.shouldSeeWelcomeMessage();
+});
+
+Then('I should see an error message', () => {
+  loginPage.shouldSeeErrorMessage();
+});
+
+Then('I should see the login form', () => {
+  loginPage.shouldBeVisible('selectors.username');
+  loginPage.shouldBeVisible('selectors.password');
+  loginPage.shouldBeVisible('selectors.loginButton');
+});

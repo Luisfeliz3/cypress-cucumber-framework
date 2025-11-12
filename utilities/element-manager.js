@@ -8,7 +8,6 @@ class ElementManager {
   }
 
   loadElements() {
-
     try {
       const elementsPath = path.join(__dirname, 'elements.json');
       this.elements = fs.readJsonSync(elementsPath);
@@ -49,8 +48,6 @@ class ElementManager {
    * @returns {Object} All elements for the page
    */
   getPageElements(pageName) {
-    // console.log( path.join(__dirname, 'elements.json') + "<<<<<<<<!<!<!<!<!-----");
-    
     if (!this.elements.pages[pageName]) {
       throw new Error(`Page '${pageName}' not found in elements configuration`);
     }
@@ -152,5 +149,5 @@ class ElementManager {
 
 // Create singleton instance
 const elementManager = new ElementManager();
-elementManager.getPageElements("dashboard");
+
 module.exports = elementManager;

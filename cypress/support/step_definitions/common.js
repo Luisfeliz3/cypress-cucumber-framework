@@ -1,17 +1,19 @@
-const { Given, When, Then, Before, After } = require('@badeball/cypress-cucumber-preprocessor');
+import { Given, When, Then, Before, After } from '@badeball/cypress-cucumber-preprocessor';
 
 // Before each scenario
 Before(() => {
   cy.log('Starting a new scenario');
+  console.log('Starting a new scenario');
 });
 
 // After each scenario  
 After(() => {
   cy.log('Scenario completed');
+  console.log('Scenario completed');
 });
 
 Given('I am on the logins page', () => {
-  cy.visit('www.nasdaq.com');
+  cy.visit('https://www.linkedin.com');
 });
 
 When('I enter username {string} and password {string}', (username, password) => {
